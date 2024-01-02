@@ -1,0 +1,38 @@
+deploymentName: image-service
+deploymentLabel: image-service
+deploymentNamespace: "{{ .Values.namespace }}"
+
+replicaCount: 1
+
+repository: {{ .Values.repository }}/image-service
+tag: latest
+imagePullPolicy: {{ .Values.imagePullPolicy }}
+
+containerPort: 8080
+
+type: ClusterIP
+port: 80
+targetPort: 8080
+
+resources:
+    requests:
+        cpu: "500m"
+        memory: "750Mi"
+    limits:
+        cpu: "500m"
+        memory: "4000Mi"
+
+java_opts: "-XX:MaxHeapFreeRatio=45 -Xms512m -Xmx2048m -Duser.timezone=Europe/Warsaw"
+
+
+kafkaConsumerGroup: '"news-group"'
+env: {{ .Values.env}}
+
+s3BucketPrefix: https://news-image-service.s3.eu-central-1.amazonaws.com/
+s3Region: eu-central-1
+s3Bucket: news-image-service
+
+
+kafkaProcessedImagesTopic: "kafka-processed-images"
+kafkaImagesToProcessTopic: "kafka-images-to-process"
+bootstrapServers: 192.168.88.218:9092

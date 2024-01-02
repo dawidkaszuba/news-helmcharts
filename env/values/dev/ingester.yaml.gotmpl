@@ -1,0 +1,36 @@
+deploymentName: ingester
+deploymentLabel: ingester
+deploymentNamespace: "{{ .Values.namespace }}"
+
+replicaCount: 1
+
+repository: {{ .Values.repository }}/ingester
+tag: latest
+imagePullPolicy: {{ .Values.imagePullPolicy }}
+
+containerPort: 8080
+
+type: LoadBalancer
+port: 80
+targetPort: 8080
+
+resources:
+    requests:
+        cpu: "500m"
+        memory: "750Mi"
+    limits:
+        cpu: "500m"
+        memory: "4000Mi"
+
+java_opts: "-XX:MaxHeapFreeRatio=45 -Xms512m -Xmx2048m -Duser.timezone=Europe/Warsaw"
+
+
+kafkaConsumerGroup: '"news-group"'
+env: {{ .Values.env }}
+datasourceUrl: jdbc:mysql://192.168.80.1:3306/news?useTimezone=true&useSSL=false
+datasourceUserName: news-db-user
+
+
+kafkaProcessedImagesTopic: "kafka-processed-images"
+kafkaImagesToProcessTopic: "kafka-images-to-process"
+bootstrapServers: 192.168.88.218:9092

@@ -1,0 +1,5 @@
+namespace: news-dev
+repository: dawidkaszuba
+imagePullPolicy: Always
+tag: latest
+env: dev
