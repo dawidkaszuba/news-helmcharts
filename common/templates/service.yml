@@ -1,0 +1,16 @@
+{{- define "common.service" -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.deploymentNamespace }}
+  name: "{{ .Values.deploymentLabel }}-svc"
+spec:
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.targetPort }}
+      protocol: TCP
+  selector:
+    app: {{ .Values.deploymentLabel }}
+  type: {{ .Values.type }}
+{{- end -}}
