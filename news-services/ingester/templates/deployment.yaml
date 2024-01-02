@@ -1,0 +1,1 @@
+{{- template "news-services.ingester-deployment" . -}}

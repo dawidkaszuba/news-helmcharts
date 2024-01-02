@@ -1,0 +1,23 @@
+environments:
+  dev:
+    values:
+      - env/dev.yaml
+---
+
+ releases:
+  - name: ingester
+    namespace: "{{ .Values.namespace }}"
+    createNamespace: true
+    chart: ./news-services/ingester
+    installed: true
+    values:
+      - ./env/values/{{ .Environment.Name }}/ingester.yaml.gotmpl
+
+  - name: image-service
+    namespace: "{{ .Values.namespace }}"
+    createNamespace: true
+    chart: ./news-services/image-service
+    installed: true
+    values:
+      - ./env/values/{{ .Environment.Name }}/image-service.yaml.gotmpl
+
