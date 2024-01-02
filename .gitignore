@@ -1,0 +1,27 @@
+# IntelliJ specific
+.idea/
+*.iml
+*.iws
+
+# Windows specific
+Thumbs.db
+Desktop.ini
+
+# Exclude secret.sh files
+*secret.sh
+
+# Exclude .tgz and .lock files
+*.tgz
+*.lock
+
+# Log files
+*.log
+
+# Compiled output
+/out/
+/target/
+
+# Environments files
+.env
+.env.local
+
