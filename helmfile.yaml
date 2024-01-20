@@ -21,3 +21,9 @@ environments:
     values:
       - ./env/values/{{ .Environment.Name }}/image-service.yaml.gotmpl
 
+  - name: kafka
+    namespace: "{{ .Values.namespace }}"
+    chart: bitnami/kafka
+    version: 17.2.3
+    values:
+      - kafka-values.yaml
