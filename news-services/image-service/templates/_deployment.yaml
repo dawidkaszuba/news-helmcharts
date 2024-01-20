@@ -12,6 +12,10 @@
               value: {{ .Values.kafkaImagesToProcessTopic }}
             - name: PROCESSED_IMAGES_TOPIC_NAME
               value: {{ .Values.kafkaProcessedImagesTopic }}
+            - name: PROCESSED_IMAGES_TOPIC_PARTITIONS
+              value: "1"
+            - name: PROCESSED_IMAGES_REPLICATION_FACTOR
+              value: "1"
             - name: S3_BUCKET_PREFIX
               value: {{ .Values.s3BucketPrefix }}
             - name: S3_REGION

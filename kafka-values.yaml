@@ -1,0 +1,6 @@
+auth:
+  clientProtocol: plaintext
+  interBrokerProtocol: plaintext
+  jaas:
+    clientUsers: []
+    clientPasswords: []
